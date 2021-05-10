@@ -1,0 +1,6 @@
+tweepy
+typing
+pydantic
+requests
+config
+
