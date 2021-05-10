@@ -1,4 +1,5 @@
 IMPORTANT: Do not ask for a summary of the same episode more than once. This causes the bot the break. (IMPORTANT)
+    In testing the bot the first couple episodes of season 1 of Modern Family have already been used. 
 
 This Twitter bot was make to tweet summaries of TV show episodes to twitter users who tweet at the bot. The information
 for the bot was sourced from the TV Maze public API (https://www.tvmaze.com/api#show-cast). 
