@@ -1,10 +1,12 @@
-This Twitter bot was make to tweet summaries of TV show episodes to twitter users who tweet at the bot. The information for the bot 
-was sourced from the TV Maze public API (https://www.tvmaze.com/api#show-cast). 
+IMPORTANT: Do not ask for a summary of the same episode more than once. This causes the bot the break. (IMPORTANT)
+
+This Twitter bot was make to tweet summaries of TV show episodes to twitter users who tweet at the bot. The information
+for the bot was sourced from the TV Maze public API (https://www.tvmaze.com/api#show-cast). 
 
 In order to use the bot tweets must be formatted in one of a few ways. 
 
-Each tweet must include the word 'summary', the TV show title, the season, and the episode in that order. The bot is connected to a twitter
-account with the username @emcath7. 
+Each tweet must include the word 'summary', the TV show title, the season, and the episode in that order. The bot is
+connected to a twitter account with the username @emcath7. 
 
 The following tweets are sample tweets with wording that will recieve a response from the bot. 
 
@@ -18,9 +20,10 @@ Sample tweets:
 
     @emcath7 summary Modern Family season 1 episode 1 please
 
-Each of the tweets above would recieve the following reply: "@UserWhoSentTweet A new half-hour comedy that takes an honest 
-and often hilarious look at the complexities of modern day families."
+Each of the tweets above would recieve the following reply: "@UserWhoSentTweet A new half-hour comedy that takes an
+honest and often hilarious look at the complexities of modern day families."
 
+IMPORTANT: Do not ask for a summary of the same episode more than once. This causes the bot the break. (IMPORTANT)
 
 The bot also responds to tweets that ask about TV shows, episodes, or seasons that do not exist. 
 
@@ -34,13 +37,20 @@ Sample tweets for non existant shows/episodes:
     @emcath7 summary Modern Family season 100 episode 1
 
         Response:
-        @UserWhoSentTweet Sorry! That episode or season might not exist or we don't understand what you are asking. Please try again!
+        @UserWhoSentTweet Sorry! That episode or season might not exist or we don't understand what you are asking. 
+        Please try again!
 
-Some episode summaries are longer than the 270 character limit for tweets. In order to account for this summaries that are longer than 
-260 characters (leaving 10 characters to account for usernames) are broken up into two or three tweets based on their lengths. 
+Some episode summaries are longer than the 270 character limit for tweets. In order to account for this summaries that
+are longer than 250 characters (leaving 20 characters to account for usernames) are broken up into two or three tweets 
+based on their length. The signs (<p>) that the API puts at the beginning and end of summaries have also been removed 
+for ease of reading. 
 
-The reply_to_tweets() function - which looks for and responds to tweets - runs every 30 seconds to see if there are any twitter users who 
-have asked for. In order to track which tweets have been responded to and which tweets are awaiting a response the last_seen_id.txt file 
-keeps track of the ID of the last tweet that the bot replied to in order to make sure that each tweet is replied to in order. The bulk of 
-the code in the reply_to_tweets() function parses the text of the tweets to figure out which TV show, season, and episode the user is 
-interested in. That is why the phrasing of the tweets (acceptable phrasings shown in examples above) is so important. 
+The config.py file contains a function to create the API and is called in main-tracking.py - the file with the majority 
+of the code for the bot. The main-tracking.py file has two main functions: reply_to_tweets() and main(). Main runs every 
+30 seconds and triggers the reply_to_tweets() function to look for tweets that tag @emcath7 and contain the word summary. 
+
+The bulk of the code in the reply_to_tweets() function parses the text of the tweets to figure out which TV show, 
+season, and episode the user is interested in. That is why the phrasing of the tweets (acceptable phrasings shown in 
+examples above) is so important. After the tweet is parsed and the individual parts have been identified and assigned a 
+variable the summary is found using the TV Maze API and the user who tweeted at the bot is replied to with a summary of 
+their episode of interest. 
