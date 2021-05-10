@@ -55,3 +55,12 @@ season, and episode the user is interested in. That is why the phrasing of the t
 examples above) is so important. After the tweet is parsed and the individual parts have been identified and assigned a 
 variable the summary is found using the TV Maze API and the user who tweeted at the bot is replied to with a summary of 
 their episode of interest. 
+
+I ran into some issues with the bot not being able to tweet the same thing more than once (hence the IMPORTANT messages
+above). When the same summary is asked for more than once Twitter API throws an error that says 
+"tweepy.error.TweepError: [{'code': 187, 'message': 'Status is a duplicate.'}]" so that is something that needs to be 
+avoided. 
+
+I also realized that the bot did not know what to do if the word 'summary' was included without enough other information. 
+In order to deal with the possibility of not enought information being provided, if the tweet is less than 6 words
+(Summary Show Season # Episode #) the bot replys that not enough information was provided. 
